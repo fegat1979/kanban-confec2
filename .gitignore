@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos sensíveis - NUNCA subir no GitHub
+.env
+.env.local
+.env.production
+.env.development
+
+# Outros arquivos que também não queremos
+node_modules/
+dist/
+build/
+.DS_Store
