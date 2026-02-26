@@ -1,0 +1,28 @@
+import type { ColumnKey } from "../types";
+
+export const DEFAULT_COLUMN_OPTIONS: { value: ColumnKey; label: string; }[] = [
+  { value: "JAN" as ColumnKey, label: "Calendário - JAN" },
+  { value: "FEV" as ColumnKey, label: "Calendário - FEV" },
+  { value: "MAR" as ColumnKey, label: "Calendário - MAR" },
+  { value: "ABR" as ColumnKey, label: "Calendário - ABR" },
+  { value: "MAI" as ColumnKey, label: "Calendário - MAI" },
+  { value: "JUN" as ColumnKey, label: "Calendário - JUN" },
+  { value: "JUL" as ColumnKey, label: "Calendário - JUL" },
+  { value: "AGO" as ColumnKey, label: "Calendário - AGO" },
+  { value: "SET" as ColumnKey, label: "Calendário - SET" },
+  { value: "OUT" as ColumnKey, label: "Calendário - OUT" },
+  { value: "NOV" as ColumnKey, label: "Calendário - NOV" },
+  { value: "DEZ" as ColumnKey, label: "Calendário - DEZ" },
+  { value: "AG_MP" as ColumnKey, label: "Aguardando MP" },
+  { value: "AG_CORTE" as ColumnKey, label: "Aguardando Corte" },
+  { value: "GERAR_PED" as ColumnKey, label: "Gerar Pedido" },
+  { value: "PCP" as ColumnKey, label: "Prod - PCP" },
+  { value: "DISTRIBUICAO" as ColumnKey, label: "Prod - Distribuição" },
+  { value: "COSTURA" as ColumnKey, label: "Prod - Costura" },
+  { value: "PINTURA" as ColumnKey, label: "Prod - Pintura" },
+  { value: "ESTAMPA_FILME" as ColumnKey, label: "Prod - Estampa/Filme" },
+  { value: "ARREMATE" as ColumnKey, label: "Prod - Arremate" },
+  { value: "EMBALAGEM" as ColumnKey, label: "Prod - Embalagem" },
+  { value: "EXPEDICAO" as ColumnKey, label: "Prod - Expedição" },
+  { value: "CONCLUIDO" as ColumnKey, label: "Concluído" },
+];

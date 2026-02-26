@@ -1,0 +1,48 @@
+regras do base de dados do firebase - Kanban3
+
+==== INÍCIO DO CÓDGIGO ====
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function isMember(boardId) {
+      // "exists" não exige permissão de leitura — funciona para checar membership
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/boards/$(boardId)/members/$(request.auth.uid));
+    }
+    function role(boardId) {
+      // "get" exige permissão de leitura do doc de membro — por isso liberamos "read" abaixo
+      return get(/databases/$(database)/documents/boards/$(boardId)/members/$(request.auth.uid)).data.role;
+    }
+
+    match /boards/{boardId} {
+      // 👇 Só membros podem LER o board e seus cards
+      allow read: if isMember(boardId);
+
+      // ===== Subcoleções =====
+      // Cards: membros leem; só admin/editor escrevem
+      match /cards/{cardId} {
+        allow read: if isMember(boardId);
+        allow create, update, delete: if isMember(boardId) && (role(boardId) in ['admin','editor']);
+      }
+
+      // Members:
+      // 🔑 Qualquer usuário logado pode LER o PRÓPRIO doc (p/ checar role sem loop),
+      //     admins podem gerenciar todos
+      match /members/{uid} {
+        allow read: if (isSignedIn() && request.auth.uid == uid) || isMember(boardId);
+        allow create, update, delete: if isMember(boardId) && role(boardId) == 'admin';
+      }
+
+      // Pedidos de acesso: usuário logado cria/consulta o próprio; admin gerencia todos
+      match /joinRequests/{uid} {
+        allow create: if isSignedIn() && request.auth.uid == uid;
+        allow read: if (isSignedIn() && request.auth.uid == uid) || (isMember(boardId) && role(boardId) == 'admin');
+        allow update, delete: if isMember(boardId) && role(boardId) == 'admin';
+      }
+    }
+  }
+}
+
+==== FINAL DO CÓDGIGO ====
