@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +72,7 @@ export default defineConfig([
   },
 ])
 ```
+=======
+# kanban-confec
+Kanban para controle de pedidos em indústrias de confecção
+>>>>>>> b29cf66ca50275a8b5a0e5a8437a1e8a9c6f78cf
