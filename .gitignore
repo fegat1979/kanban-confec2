@@ -1,3 +1,26 @@
+# ========================
+#  KANBAN CONFEÇÃO - .gitignore
+# ========================
+
+# Dependências do Node
+node_modules/
+.pnp
+.pnp.js
+
+# Build / Produção
+dist/
+build/
+*.tsbuildinfo
+
+# ========================
+# ARQUIVOS SENSÍVEIS (NUNCA subir no GitHub)
+# ========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
 # Logs
 logs
 *.log
@@ -5,32 +28,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+# Editor / IDE
+.vscode/
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-
-# Arquivos sensíveis - NUNCA subir no GitHub
-.env
-.env.local
-.env.production
-.env.development
-
-# Outros arquivos que também não queremos
-node_modules/
-dist/
-build/
 .DS_Store
+
+# Firebase / Outros temporários
+.firebase/
