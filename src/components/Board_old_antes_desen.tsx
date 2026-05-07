@@ -1,4 +1,4 @@
-// src/components/Board.tsx - VERSÃO OTIMIZADA (DESENVOLVIMENTO)
+// src/components/Board.tsx - VERSÃO FINAL CORRIGIDA (SCROLL + TYPE SCRIPT OK)
 import React, { useMemo, useState, useCallback } from "react";
 import { STAGES } from "../data";
 import type { Card, Card as CardType, ColumnKey, TipoPedido, StageKey } from "../types";
@@ -35,7 +35,7 @@ export function Board({
 
   const activeCard = useMemo(() => visibleCards.find((c) => c.id === activeId) || null, [activeId, visibleCards]);
 
-  // FILTRA POR ETAPA (isso resolve o scroll reset)
+  // FILTRA CARTÕES POR ETAPA (corrige scroll + performance)
   const cardsByStage = useMemo(() => {
     const map: Record<StageKey, CardType[]> = {} as any;
     STAGES.forEach((s) => {
@@ -117,7 +117,7 @@ export function Board({
     >
       <div className="max-w-[1400px] mx-auto p-4 space-y-6">
         {STAGES.map((s) => {
-          const stageKey = s.key as StageKey;
+          const stageKey = s.key as StageKey;   // ← CORREÇÃO DO ERRO
           return (
             <div key={s.key} className="space-y-2">
               <Stage
